@@ -46,7 +46,7 @@ const ContactForm = ({ onAddContact }) => {
       ) : null}
 
       <label htmlFor="number" className={styles.label}>
-        Phone Number
+        Number
       </label>
       <input
         id="number"
