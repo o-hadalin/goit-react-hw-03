@@ -1,13 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
+import { nanoid } from 'nanoid';
 import initialContacts from './data/contacts.json';
 import './App.css';
 
+const LOCAL_STORAGE_KEY = 'contacts';
+
 const App = () => {
-  const [contacts, setContacts] = useState(initialContacts);
+  const [contacts, setContacts] = useState(() => {
+    const savedContacts = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return savedContacts ? JSON.parse(savedContacts) : initialContacts;
+  });
+
   const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
+  }, [contacts]);
 
   const addContact = newContact => {
     const duplicate = contacts.find(
@@ -19,12 +30,15 @@ const App = () => {
       return;
     }
 
-    setContacts(prevContacts => [...prevContacts, newContact]);
+    setContacts(prevContacts => [
+      ...prevContacts,
+      { id: nanoid(), ...newContact },
+    ]);
   };
 
-  const deleteContact = contactId => {
+  const deleteContact = id => {
     setContacts(prevContacts =>
-      prevContacts.filter(contact => contact.id !== contactId)
+      prevContacts.filter(contact => contact.id !== id)
     );
   };
 
