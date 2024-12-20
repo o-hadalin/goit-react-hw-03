@@ -1,15 +1,30 @@
 import { useState } from 'react';
-import './App.css';
 import ContactList from './components/ContactList/ContactList';
-import initialContacts from './data/contacts.json';
+import SearchBox from './components/SearchBox/SearchBox';
+import contactsData from './data/contacts.json';
+import './App.css';
 
 const App = () => {
-  const [contacts /*, setContacts*/] = useState(initialContacts);
+  const [contacts] = useState(contactsData);
+  const [filter, setFilter] = useState('');
+
+  const handleFilterChange = e => {
+    setFilter(e.target.value);
+  };
+
+  const getFilteredContacts = () => {
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  };
+
+  const filteredContacts = getFilteredContacts();
 
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactList contacts={contacts} />
+      <SearchBox value={filter} onChange={handleFilterChange} />
+      <ContactList contacts={filteredContacts} />
     </div>
   );
 };
