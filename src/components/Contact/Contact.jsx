@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { FaUser, FaPhone } from 'react-icons/fa';
+import { FaUser, FaPhoneAlt } from 'react-icons/fa';
 import styles from './Contact.module.css';
 
 const Contact = ({ name, number }) => {
@@ -14,7 +14,7 @@ const Contact = ({ name, number }) => {
         </div>
         <div>
           <span className={styles.icon}>
-            <FaPhone />
+            <FaPhoneAlt />
           </span>
           <span className={styles.number}>{number}</span>
         </div>
