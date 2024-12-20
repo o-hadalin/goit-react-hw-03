@@ -40,6 +40,7 @@ const ContactForm = ({ onAddContact }) => {
         value={formik.values.name}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
+        autoComplete="name"
       />
       {formik.touched.name && formik.errors.name ? (
         <div className={styles.error}>{formik.errors.name}</div>
@@ -56,6 +57,7 @@ const ContactForm = ({ onAddContact }) => {
         value={formik.values.number}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
+        autoComplete="tel"
       />
       {formik.touched.number && formik.errors.number ? (
         <div className={styles.error}>{formik.errors.number}</div>

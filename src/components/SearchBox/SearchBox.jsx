@@ -4,15 +4,18 @@ import styles from './SearchBox.module.css';
 const SearchBox = ({ value, onChange }) => {
   return (
     <div className={styles.searchBox}>
-      <label className={styles.label}>
+      <label htmlFor="search" className={styles.label}>
         Find contacts by name
-        <input
-          type="text"
-          value={value}
-          onChange={onChange}
-          className={styles.input}
-        />
       </label>
+      <input
+        id="search"
+        name="search"
+        type="text"
+        value={value}
+        onChange={onChange}
+        className={styles.input}
+        autoComplete="off"
+      />
     </div>
   );
 };
