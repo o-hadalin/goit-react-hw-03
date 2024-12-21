@@ -42,8 +42,8 @@ const App = () => {
     );
   };
 
-  const handleFilterChange = value => {
-    setFilter(value.toLowerCase());
+  const handleFilterChange = event => {
+    setFilter(event.target.value.toLowerCase());
   };
 
   const filteredContacts = contacts.filter(contact =>
